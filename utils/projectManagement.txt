@@ -1,0 +1,26 @@
+**>                                                HOSPITAL MANAGEMENT SYSTEM                                                              <**
+
+
+
+
+Member           |          Role/Module                          | Responsibilities
+||---------------|-----------------------------------------------|------------------------------------||
+Uzair (Leader)   |  Project Manager + Integration                | Coordinate tasks, maintain main.cpp, handle function calls from all modules, ensure consistency in naming conventions, manage final compilation and file handling.
+Abubakar,Saad    |  Patient Management                           | Create Patient class (input, display, edit, delete, search patients), store in file/array.
+Rana Abuzar      |  Doctor/Staff Management                      | Create Doctor and Staff classes, manage doctor info, specializations, timing, and basic login for staff if needed.
+Rehan,Uzair      |  Appointment Scheduler                        | Handle appointments: scheduling, cancelling, viewing based on patient-doctor, store date/time info.
+Uzair            |  Billing System                               |  Generate bills with consultation, medicines, room charges, total cost, possibly export as text file or print in console.
+
+
+
+
+
+PROJECT FOLDER STRUCTURE :-
+    HospitalManagement/         -- main directory
+├── main.cpp                    -- main 
+├── patient.h / patient.cpp                             
+├── doctor.h / doctor.cpp                               
+├── appointment.h / appointment.cpp
+├── billing.h / billing.cpp
+├── staff.h / staff.cpp
+└── data/ ( folder for storing data) [file handling]
