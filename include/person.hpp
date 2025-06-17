@@ -26,7 +26,7 @@ class Person{
         int getAge();       
 };
 
-
+// custome errors may be thrown by the above class
 class RangeError : public runtime_error{
     public:
         

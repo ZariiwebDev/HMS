@@ -25,7 +25,7 @@ Person::Person(string name,int age,string contact){
             throw RangeError("Name is too long !");
         }
         if(contact.length()>CONTACT_M){
-            throw RangeError("You entered very ong Contact Number please make it to maximam 12 digits !");
+            throw RangeError("You entered very long Contact Number please make it to maximam 12 digits !");
         }
         if(contact.length()!=11 && contact.length()!=CONTACT_M){
             throw RangeError("Please Enter correct Contact Number , correct contact number have must be 11 or 12 digits long !");
