@@ -9,13 +9,9 @@ using namespace std;
 
 // default constructor imp 
 Person::Person(){
-    /* initialized members with there initial value
-        --> for char array : "" null 
-        --> for int : 0 
-    */
     strcpy(name,"");
     age = 0;
-    strcpy(contact,"");
+    strcpy(contact, "000000000000");
 }
 
 
@@ -25,7 +21,7 @@ Person::Person(string name,int age,string contact){
             throw RangeError("Name is too long !");
         }
         if(contact.length()>CONTACT_M){
-            throw RangeError("You entered very long Contact Number please make it to maximam 12 digits !");
+            throw RangeError("You entered very long Contact Number please make it to maximum 12 digits !");
         }
         if(contact.length()!=11 && contact.length()!=CONTACT_M){
             throw RangeError("Please Enter correct Contact Number , correct contact number have must be 11 or 12 digits long !");
@@ -51,7 +47,7 @@ void Person::setPerson(string name,int age,string contact){
 }
 
 void Person::getPersonDetails(){
-    cout<<"Name : "<<name<<"\n Age : "<<age<<"\n Contact No. : "<<contact<<"\n\n"; 
+    cout<<"Name : "<<name<<"\n Age : "<<age<<"\n Contact No. : "<<contact<<"\n"; 
  }
 // returns the age : int
 int Person::getAge(){
@@ -69,5 +65,7 @@ string Person::getContact(){
 }
 
 
-
+size_t Person::sizeOf() const {
+    return sizeof(*this);
+}
 // END
