@@ -8,7 +8,7 @@ TARGET = output.exe
 
 # Default rule: build and run
 all: $(TARGET)
-	@echo Running the program...
+	@echo running HMS software...
 	@$(TARGET)
 
 # Link and compile
