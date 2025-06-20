@@ -1,15 +1,13 @@
 #include"../include/patient.hpp"
-#include"string.h"
 #include"fstream"
 using namespace std;
 set<string> Patient::UniqueIDs;
 Patient::Patient():Person(){
-    strcpy(patientID,"0");
-    strcpy(disease,"");
+    patientID="";
+    disease="";
 }
 Patient::Patient(string name, int age, string contact, string patientID="", string disease="") : Person(name, age, contact)
 {
-    loadIds();
     if(patientID.length()>14){
         throw RangeError("Patient ID can't be more than 14 characters!");
     }
@@ -21,81 +19,35 @@ Patient::Patient(string name, int age, string contact, string patientID="", stri
         throw UniquePatientID("Patient already exists on this ID");
     }
     UniqueIDs.insert(patientID);
-    strcpy(this->patientID,patientID.c_str());
-    strcpy(this->disease,disease.c_str());
-    saveids();
+    this->patientID=patientID;
+    this->disease=disease;
 }
 
-void Patient::registerPatient(string patientID, string disease){
-    loadIds();
-    if (patientID.length() > 14)
-    {
-        throw RangeError("Patient ID can't be more than 14 characters!");
-    }
-    if (disease.length() > 30)
-    {
-        throw RangeError("Disease length exceeds it must be within 30 characters");
-    }
-    if (UniqueIDs.find(patientID) != UniqueIDs.end())
-    {
-        throw UniquePatientID("Patient already exists on this ID");
-    }
-    UniqueIDs.insert(patientID);
-    strcpy(this->patientID, patientID.c_str());
-    strcpy(this->disease, disease.c_str());
-    saveids();
-}
-void Patient::updatePatientInfo(string name, int age, string contact, string patientID, string disease)
+
+
+void Patient::updatePatientInfo(Patient& p,string name, int age, string contact, string patientID, string disease)
 {
-    if(UniqueIDs.find(patientID)!=UniqueIDs.end()){
-        Person(name,age,contact);
-        strcpy(this->disease,disease.c_str());
-    }else{
-        throw UniquePatientID("This person does not exists");
+    if(UniqueIDs.find(p.patientID)!=UniqueIDs.end()){
+        if(p.patientID!=patientID){
+            UniqueIDs.erase(p.patientID);
+            UniqueIDs.insert(patientID);
+            p.patientID = patientID;
+        }
+        p.name = name;
+        p.age = age;
+        p.contact = contact;
+        p.disease=disease;
+        return;
     }
+
+        throw UniquePatientID("This person does not exists");
 }
 
-void Patient::getPatientDetails()
+void Patient::getDetails()
 {
     cout<<"id: "<<patientID<<"\n";
-    Person::getPersonDetails();
+    Person::getDetails();
     cout<<"Disease: "<<disease<<"\n";
-}
-
-size_t Patient::sizeOf() const{
-    return sizeof(*this);
-}
-
-void Patient::saveids()
-{
-    ofstream file(".//data//patientids.txt", ios::out);
-    if (!file.is_open())
-    {
-        throw FileNotOpening("unique ids can't be stored");
-    }
-    for(string ele : UniqueIDs){
-        file<<ele<<"\n";
-    }
-    file.close();
-}
-
-void Patient::loadIds()
-{
-    ifstream file(".//data//patientids.txt", ios::in|ios::out);
-    if (!file.is_open())
-    {
-        throw FileNotOpening("unique ids can't be fetched ");
-    }
-    file.seekg(0,ios::end);
-    if(file.tellg()==0){
-       return;
-    }
-    file.seekg(0,ios::beg);
-    string buffer;
-    while(getline(file,buffer)){
-        if(buffer.length())
-            UniqueIDs.insert(buffer);
-    }
 }
 
 
@@ -128,6 +80,7 @@ void Patient::loadFromFile(){
     file.seekg(0,ios::end);
     if(file.tellg()==0){
         cout<<"no patient found";
+        return;
     }
     file.seekg(0,ios::beg);
     string buffer;
@@ -150,7 +103,7 @@ void Patient::loadFromFile(){
         buffer="";
         getline(file,buffer);
         if(buffer.length())
-        cout<<"disease: "<<buffer<<"\n";
+        cout << "disease: " << buffer << "\n\n\n";
         buffer="";
     }
 }

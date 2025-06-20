@@ -1,8 +1,17 @@
 #include"iostream"
-// #include"..\include\person.hpp"        // --> Person
-
+#include"patient.hpp"         // --> Patient
+#include"staff.hpp"          // --> Staff
+#include"doctor.hpp"        // --> Doctor
+#include"appointment.hpp"  // --> appointment
+#include"stdexcept"
 using namespace std;
 
 int main(){
-    
+    try{
+       
+    }
+    catch(const exception& e){
+        cerr<<"ERROR : "<<e.what();
+    }
 }
+

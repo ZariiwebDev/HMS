@@ -1,5 +1,5 @@
 #ifndef PERSON_H
-#define PRSON_H
+#define PERSON_H
 
 #include"iostream"
 using namespace std;
@@ -9,21 +9,14 @@ using namespace std;
 #define CONTACT_M 12
 class Person{
     // Person Members
-    protected:
+    public:
         int age;
-        char name[31];   // 30 chars  for name and 1 for null terminator.    
-        char contact[13];   // 12 chars  for contactNumber and 1 for null terminator. 
-        public:
-            size_t sizeOf() const;
-            Person();                                             // default constructor.
-            Person(string name, int age, string contact);         // parameterized constructor.
-            void getPersonDetails();                              // display function.
-            void setPerson(string name, int age, string contact); // setter function.
-
-            // help functions rarely used
-            string getName();
-            string getContact();
-            int getAge();       
+        string name;   
+        string contact;    
+        Person();                                             // default constructor.
+        Person(string name, int age, string contact);         // parameterized constructor.
+        virtual void getDetails();                              // display function.
+        void setPerson(string name, int age, string contact); // setter function.
 };
 
 // custome errors may be thrown by the above class

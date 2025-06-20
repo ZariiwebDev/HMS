@@ -1,5 +1,4 @@
 #include"iostream"
-#include"string.h"          //---> included to use strcpy()
 #include "../include/person.hpp"
 using namespace std;
 
@@ -9,9 +8,9 @@ using namespace std;
 
 // default constructor imp 
 Person::Person(){
-    strcpy(name,"");
+    name="";
     age = 0;
-    strcpy(contact, "000000000000");
+    contact="000000000000";
 }
 
 
@@ -27,8 +26,8 @@ Person::Person(string name,int age,string contact){
             throw RangeError("Please Enter correct Contact Number , correct contact number have must be 11 or 12 digits long !");
         }
         this->age = age;
-        strcpy(this->name,name.c_str());        // c_str() -> returns the null terminated const char*
-        strcpy(this->contact,contact.c_str());
+        this->name=name.c_str();       
+        this->contact=contact.c_str();
 }
 void Person::setPerson(string name,int age,string contact){
 
@@ -42,30 +41,13 @@ void Person::setPerson(string name,int age,string contact){
             throw RangeError("Please Enter correct Contact Number , correct contact number have must be 11 or 12 digits long !");
         }
         this->age = age;
-        strcpy(this->name,name.c_str());        // c_str() -> returns the null terminated const char*
-        strcpy(this->contact,contact.c_str());
+        this->name=name.c_str();        
+        this->contact=contact.c_str();
 }
 
-void Person::getPersonDetails(){
+void Person::getDetails(){
     cout<<"Name : "<<name<<"\n Age : "<<age<<"\n Contact No. : "<<contact<<"\n"; 
  }
-// returns the age : int
-int Person::getAge(){
-    return age;
-}
-// returns the name : string
-string Person::getName(){
-    string name_str = name;
-    return name_str;
-}
-// returns the contact : string
-string Person::getContact(){
-    string contact_str = contact;
-    return contact_str;
-}
 
 
-size_t Person::sizeOf() const {
-    return sizeof(*this);
-}
 // END

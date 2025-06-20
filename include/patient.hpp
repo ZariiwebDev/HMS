@@ -3,29 +3,22 @@
 
 #include "iostream"
 #include "set"
-#include "../include/person.hpp"
+#include "person.hpp"
 using namespace std;
 
-class Patient : Person
+class Patient :public Person
 { //  :: it takes
 private:
     static set<string>UniqueIDs;
-    void static loadIds();
-    void static saveids();
-protected:
-    char disease[31];
-    char patientID[13];
-
 public:
+    string disease;
+    string patientID;
     Patient();
     Patient(string name, int age, string contact, string patientID, string disease);
-    void registerPatient(string patientID, string disease);
-    void updatePatientInfo(string name, int age, string contact, string patientID, string disease);
-    void getPatientDetails();
+    void static updatePatientInfo(Patient&,string name, int age, string contact, string patientID, string disease);
+    void getDetails() override;
     void static saveToFile(const Patient&);
-    void static loadFromFile(const string patientID);
     void static loadFromFile();
-    size_t sizeOf() const;
 
 }; // Patient class
 
