@@ -156,7 +156,7 @@ bool Appointment::timeValidator(string time)
     {
         int hours = stoi(time.substr(0, time.find(':')));
         int minutes = stoi(time.substr((time.find(':') + 1), time.length()));
-        if (hours < 0 || minutes < 0)
+        if (hours <= 0 || minutes <= 0)
         {
             return false;
         }
