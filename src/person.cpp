@@ -26,8 +26,8 @@ Person::Person(string name,int age,string contact){
             throw RangeError("Please Enter correct Contact Number , correct contact number have must be 11 or 12 digits long !");
         }
         this->age = age;
-        this->name=name.c_str();       
-        this->contact=contact.c_str();
+        this->name=name;       
+        this->contact=contact;
 }
 void Person::setPerson(string name,int age,string contact){
 
@@ -41,8 +41,8 @@ void Person::setPerson(string name,int age,string contact){
             throw RangeError("Please Enter correct Contact Number , correct contact number have must be 11 or 12 digits long !");
         }
         this->age = age;
-        this->name=name.c_str();        
-        this->contact=contact.c_str();
+        this->name=name;        
+        this->contact=contact;
 }
 
 void Person::getDetails(){
