@@ -10,15 +10,19 @@ class Patient :public Person
 { //  :: it takes
 private:
     static set<string>UniqueIDs;
+protected:
+
 public:
-    string disease;
     string patientID;
+    string disease;
     Patient();
     Patient(string name, int age, string contact, string patientID, string disease);
     void static updatePatientInfo(Patient&,string name, int age, string contact, string patientID, string disease);
     void getDetails() override;
     void static saveToFile(const Patient&);
     void static loadFromFile();
+    string getPatientID();
+    void static removePatient(const string& patientID);
 
 }; // Patient class
 
@@ -33,6 +37,11 @@ class FileNotOpening : public runtime_error
 {
 public:
     FileNotOpening(const char *message):runtime_error(message){}
+};
+class PatientExists : public runtime_error
+{
+public:
+    PatientExists(const char *message) : runtime_error(message) {}
 };
 
 #endif

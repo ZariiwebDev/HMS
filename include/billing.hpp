@@ -23,6 +23,7 @@ class Billing {
         void getBillDetails();
         void static saveToFile(const Billing&);
         void static loadFromFile();
+        string getBillID();
 };
 
 class BillIDError : public runtime_error {

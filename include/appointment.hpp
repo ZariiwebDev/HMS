@@ -30,6 +30,8 @@ class Appointment{
         void generateBill();
         void static saveToFile(const Appointment&);
         void static loadFromFile();
+        string getAppointmentID();
+        void static removeAppointment(const string&);
 };
 
 class UniqueAppointmentError : public runtime_error {

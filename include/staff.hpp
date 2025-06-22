@@ -18,6 +18,8 @@ class Staff : public Person {
         void getDetails() override;
         void static saveToFile(const Staff&);
         void static loadFromFile();
+        string getStaffID();
+        void static removeStaff(const string &staffID);
 };  
 
 class UniqueIDError : public runtime_error {

@@ -75,7 +75,7 @@ void Doctor::updateDoctorInfo(Doctor& doc, string name, int age, string contact,
         doc.shedule = Shedule(from,to);
         return;
     }
-    throw runtime_error("Sorry the doctor with this id  does not exist in records");
+    throw UniqueDoctorIDError("Sorry the doctor with this id  does not exist in records");
 }
 void Doctor::saveToFile(const Doctor& d){
     fstream file(".//data//doctors.txt",::ios::out|ios::app);
@@ -140,4 +140,20 @@ void Doctor::loadFromFile()
     }
 
     return;
+}
+
+string Doctor::getDoctorID(){
+    return doctorID;
+}
+
+void Doctor::removeDoctor(const string &doctorID)
+{
+    if (doctorids.find(doctorID) != doctorids.end())
+    {
+        doctorids.erase(doctorID);
+    }
+    else
+    {
+        throw UniqueDoctorIDError("Doctor with this ID does not exist");
+    }
 }

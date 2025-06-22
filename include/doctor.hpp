@@ -26,6 +26,8 @@ class Doctor : public Person {
         void getDetails() override;
         void static saveToFile(const Doctor&);
         void static loadFromFile();   
+        string getDoctorID();
+        void static removeDoctor(const string&);
 };
 
 class UniqueDoctorIDError : public runtime_error {

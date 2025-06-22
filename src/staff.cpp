@@ -73,7 +73,7 @@ void Staff::saveToFile(const Staff& s){
 void Staff::loadFromFile(){
     fstream file(".//data//staff.txt", ios::in);
     if(!file.is_open()){
-        ofstream temp(".//data//staff.txt");
+        ofstream temp(".//data//staff.txt",ios::out);
         if (!temp.is_open())
         {
             throw FileNotOpening("sorry we can't store patient data");
@@ -151,4 +151,17 @@ void Staff::updateStaffInfo(Staff& s, string name, int age, string contact, stri
     }
 
     throw StaffNotFound("Staff with this ID does not exist");
+}
+
+
+string Staff::getStaffID(){
+    return staffID;
+}
+
+void Staff::removeStaff(const string& staffID){
+    if(uniquestaffids.find(staffID)!=uniquestaffids.end()){
+        uniquestaffids.erase(staffID);
+    }else{
+        throw UniqueIDError("Staff with this ID does not exist");
+    }
 }

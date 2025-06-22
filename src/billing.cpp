@@ -191,3 +191,7 @@ void Billing::loadFromFile(){
 
     }
 }
+
+string Billing::getBillID(){
+    return billID;
+}

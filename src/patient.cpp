@@ -8,8 +8,8 @@ Patient::Patient():Person(){
 }
 Patient::Patient(string name, int age, string contact, string patientID="", string disease="") : Person(name, age, contact)
 {
-    if(patientID.length()>14){
-        throw RangeError("Patient ID can't be more than 14 characters!");
+    if(patientID.length()>=10){
+        throw RangeError("Patient ID can't be more than 10 characters!");
     }
     if (disease.length() > 30)
     {
@@ -40,7 +40,7 @@ void Patient::updatePatientInfo(Patient& p,string name, int age, string contact,
         return;
     }
 
-        throw UniquePatientID("This person does not exists");
+    throw UniquePatientID("This person does not exists");
 }
 
 void Patient::getDetails()
@@ -63,7 +63,6 @@ void Patient::saveToFile(const Patient& p){
     file<<p.contact<<"\n";
     file<<p.disease<<"\n";
 
-    cout << "patient is added sucessfully\n";
 }
 
 void Patient::loadFromFile(){
@@ -105,5 +104,17 @@ void Patient::loadFromFile(){
         if(buffer.length())
         cout << "disease: " << buffer << "\n\n\n";
         buffer="";
+    }
+}
+
+string Patient::getPatientID(){
+    return patientID;
+}
+
+void Patient::removePatient(const string& patientID){
+    if(UniqueIDs.find(patientID)!=UniqueIDs.end()){
+        UniqueIDs.erase(patientID);
+    }else{
+        throw PatientExists("Patient With this Id does not exists");
     }
 }

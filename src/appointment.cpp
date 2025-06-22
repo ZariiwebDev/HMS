@@ -156,7 +156,7 @@ bool Appointment::timeValidator(string time)
     {
         int hours = stoi(time.substr(0, time.find(':')));
         int minutes = stoi(time.substr((time.find(':') + 1), time.length()));
-        if (hours < 0 || minutes < 0)
+        if (hours <= 0 || minutes <= 0)
         {
             return false;
         }
@@ -261,5 +261,20 @@ void Appointment::loadFromFile(){
         }
         buffer="";
 
+    }
+}
+
+
+string Appointment::getAppointmentID(){
+    return appointmentID;
+}
+void Appointment::removeAppointment(const string& appointmentID){
+    if (appointmentIds.find(appointmentID) != appointmentIds.end())
+    {
+        appointmentIds.erase(appointmentID);
+    }
+    else
+    {
+        throw UniqueAppointmentError("Appointment with this ID does not exist");
     }
 }
